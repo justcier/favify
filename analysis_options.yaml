@@ -1,0 +1,19 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    avoid_print: true
+    avoid_relative_lib_imports: true
+    avoid_redundant_argument_values: true
+    prefer_single_quotes: true
+    prefer_const_constructors: true
+    sort_pub_dependencies: true
+    unnecessary_this: true
+    unnecessary_parenthesis: true
+
+analyzer:
+  exclude:
+    - /**/*.g.dart
+    - /**/*.freezed.dart
+  errors:
+    invalid_annotation_target: ignore
