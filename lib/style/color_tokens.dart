@@ -5,4 +5,5 @@ class ColorTokens {
   static const Color secondaryColor = Color(0xFF083AA9);
   static const Color backgroundColor = Color(0xFFFFE7CC);
   static const Color darkBackgroundColor = Color(0xFFE1CEB5);
+  static const Color mainFontColor = Color(0xFFFFFAFA);
 }
