@@ -60,7 +60,7 @@ class CategoryListContent extends StatelessWidget {
             SizedBox(
               height: Dimensions.sizeXL,
               child: TextButtonWidget.secondary(
-                text: 'View all',
+                text: Strings.secondaryButtonText,
                 onPressed: () {},
               ),
             ),

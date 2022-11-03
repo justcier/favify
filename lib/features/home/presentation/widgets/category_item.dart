@@ -1,4 +1,5 @@
 import 'package:favify/common/widgets/text_button_widget.dart';
+import 'package:favify/core/strings.dart';
 import 'package:favify/style/color_tokens.dart';
 import 'package:favify/style/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class CategoryItem extends StatelessWidget {
             ],
           ),
           TextButtonWidget.main(
-            text: 'Play',
+            text: Strings.listCategoryButtonText,
             onPressed: () {},
           )
         ],

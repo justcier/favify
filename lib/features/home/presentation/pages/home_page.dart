@@ -1,4 +1,5 @@
 import 'package:favify/common/widgets/category_list_content.dart';
+import 'package:favify/core/strings.dart';
 import 'package:favify/features/home/domain/models/category.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Favify')),
+      appBar: AppBar(title: const Text(Strings.appBarTitle)),
       body: CategoryListContent(loadedCategories: loadedCategories),
     );
   }
