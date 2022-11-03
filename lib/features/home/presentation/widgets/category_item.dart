@@ -1,3 +1,4 @@
+import 'package:favify/common/widgets/text_button_widget.dart';
 import 'package:favify/style/color_tokens.dart';
 import 'package:favify/style/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class CategoryItem extends StatelessWidget {
         vertical: Dimensions.sizeS,
         horizontal: Dimensions.sizeXL,
       ),
-      margin: const EdgeInsets.all(5.0),
+      margin: const EdgeInsets.all(Dimensions.sizeM),
       color: ColorTokens.primaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,17 +48,10 @@ class CategoryItem extends StatelessWidget {
               ),
             ],
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: ColorTokens.mainFontColor,
-              backgroundColor: ColorTokens.secondaryColor,
-              shadowColor: ColorTokens.secondaryColor,
-              elevation: 10,
-              side: const BorderSide(color: ColorTokens.darkBackgroundColor),
-            ),
+          TextButtonWidget.main(
+            text: 'Play',
             onPressed: () {},
-            child: const Text('Play'),
-          ),
+          )
         ],
       ),
     );
