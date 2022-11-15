@@ -1,8 +1,10 @@
 import 'package:favify/features/home/presentation/pages/home_page.dart';
+import 'package:favify/services/injection_service.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
+  configureInjector();
 }
 
 class MyApp extends StatelessWidget {
