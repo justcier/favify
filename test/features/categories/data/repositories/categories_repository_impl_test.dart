@@ -26,6 +26,7 @@ void main() {
         final result = categoriesRepositoryImpl.getAllCategories();
 
         // Assert
+        verify(categoriesRemoteDataSource.getAllCategories).called(1);
         expect(result, tCategories);
       });
     });
