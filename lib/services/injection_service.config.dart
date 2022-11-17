@@ -13,6 +13,8 @@ import 'package:favify/features/categories/data/repositories/categories_reposito
     as _i6;
 import 'package:favify/features/categories/domain/repositories/categories_repository.dart'
     as _i5;
+import 'package:favify/features/categories/domain/use_cases/get_all_categories_use_case.dart'
+    as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart'
     as _i2; // ignore_for_file: unnecessary_lambdas
@@ -33,5 +35,7 @@ _i1.GetIt $initGetIt(
       () => _i4.CategoriesRemoteDataSourceImpl());
   gh.factory<_i5.CategoriesRepository>(() =>
       _i6.CategoriesRepositoryImpl(get<_i3.CategoriesRemoteDataSource>()));
+  gh.factory<_i7.GetAllCategoriesUseCase>(
+      () => _i7.GetAllCategoriesUseCase(get<_i5.CategoriesRepository>()));
   return get;
 }
