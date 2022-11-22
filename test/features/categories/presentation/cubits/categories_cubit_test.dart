@@ -14,18 +14,19 @@ void main() {
       MockGetAllCategoriesUseCase();
 
   CategoriesCubit buildCubit() => CategoriesCubit();
-  CategoriesState initialState = CategoriesState.initial();
+  final CategoriesState initialState = CategoriesState.initial();
 
   setUpAll(() {
     getIt.registerFactory<GetAllCategoriesUseCase>(
       () => getAllCategoriesUseCase,
     );
   });
+
   group('getAllCategories', () {
     blocTest<CategoriesCubit, CategoriesState>(
-      'should emit loaded status and categories on successful use case call',
+      'should emit loaded status and categories on a successful use case call',
       setUp: () {
-        when(() => getAllCategoriesUseCase.call()).thenReturn(tCategories);
+        when(getAllCategoriesUseCase.call).thenReturn(tCategories);
       },
       build: buildCubit,
       act: (cubit) => cubit.getAllCategories(),

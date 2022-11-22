@@ -11,6 +11,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   Future<void> getAllCategories() async {
     emit(state.copyWith(status: CategoriesStateStatus.loading));
+    //TODO: to be removed when usecase will be returning Future
     await Future.delayed(const Duration(seconds: 3));
 
     final List<Category> result = getIt<GetAllCategoriesUseCase>().call();
