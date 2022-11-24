@@ -10,7 +10,10 @@ _$_Category _$$_CategoryFromJson(Map<String, dynamic> json) => _$_Category(
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
-      items: json['items'] as List<dynamic>? ?? const [],
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>

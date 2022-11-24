@@ -1,3 +1,4 @@
+import 'package:favify/features/categories/domain/models/item/item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'category.freezed.dart';
@@ -11,7 +12,7 @@ class Category with _$Category {
     required String id,
     required String title,
     required String description,
-    @Default([]) List items,
+    required List<Item> items,
   }) = _Category;
 
   factory Category.fromJson(Map<String, dynamic> json) =>
