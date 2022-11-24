@@ -132,7 +132,7 @@ class _$_Category extends _Category {
       {required this.id,
       required this.title,
       required this.description,
-      final List<Item> items = const []})
+      required final List<Item> items})
       : _items = items,
         super._();
 
@@ -147,7 +147,6 @@ class _$_Category extends _Category {
   final String description;
   final List<Item> _items;
   @override
-  @JsonKey()
   List<Item> get items {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -194,7 +193,7 @@ abstract class _Category extends Category {
       {required final String id,
       required final String title,
       required final String description,
-      final List<Item> items}) = _$_Category;
+      required final List<Item> items}) = _$_Category;
   const _Category._() : super._();
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
