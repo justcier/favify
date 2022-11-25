@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/features/home/presentation/pages/home_page.dart';
 import 'package:favify/features/play/presentation/pages/play_page.dart';
 import 'package:flutter/material.dart';

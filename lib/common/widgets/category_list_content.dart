@@ -39,7 +39,7 @@ class CategoryListContent extends StatelessWidget {
                     Strings.categoryListTitle,
                     style: TextStyle(
                       color: ColorTokens.secondaryColor,
-                      fontSize: 20,
+                      fontSize: Dimensions.sizeXXL,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -48,9 +48,7 @@ class CategoryListContent extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: loadedCategories.length,
                       itemBuilder: (_, i) => CategoryItem(
-                        id: loadedCategories[i].id,
-                        title: loadedCategories[i].title,
-                        description: loadedCategories[i].description,
+                        category: loadedCategories[i],
                       ),
                     ),
                   ),

@@ -23,6 +23,7 @@ mixin _$Item {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
+  dynamic get isSelected => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $ItemCopyWith<$Res> {
   factory $ItemCopyWith(Item value, $Res Function(Item) then) =
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
-  $Res call({String id, String title, String url});
+  $Res call({String id, String title, String url, dynamic isSelected});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? id = null,
     Object? title = null,
     Object? url = null,
+    Object? isSelected = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -67,6 +69,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: null == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -77,7 +83,7 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       __$$_ItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, String url});
+  $Res call({String id, String title, String url, dynamic isSelected});
 }
 
 /// @nodoc
@@ -92,6 +98,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
     Object? id = null,
     Object? title = null,
     Object? url = null,
+    Object? isSelected = null,
   }) {
     return _then(_$_Item(
       id: null == id
@@ -106,6 +113,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: null == isSelected ? _value.isSelected : isSelected,
     ));
   }
 }
@@ -113,7 +121,11 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
 /// @nodoc
 @JsonSerializable()
 class _$_Item extends _Item {
-  const _$_Item({required this.id, required this.title, required this.url})
+  const _$_Item(
+      {required this.id,
+      required this.title,
+      required this.url,
+      this.isSelected = false})
       : super._();
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
@@ -124,10 +136,13 @@ class _$_Item extends _Item {
   final String title;
   @override
   final String url;
+  @override
+  @JsonKey()
+  final dynamic isSelected;
 
   @override
   String toString() {
-    return 'Item(id: $id, title: $title, url: $url)';
+    return 'Item(id: $id, title: $title, url: $url, isSelected: $isSelected)';
   }
 
   @override
@@ -137,12 +152,15 @@ class _$_Item extends _Item {
             other is _$_Item &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.url, url) || other.url == url) &&
+            const DeepCollectionEquality()
+                .equals(other.isSelected, isSelected));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, url);
+  int get hashCode => Object.hash(runtimeType, id, title, url,
+      const DeepCollectionEquality().hash(isSelected));
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +180,8 @@ abstract class _Item extends Item {
   const factory _Item(
       {required final String id,
       required final String title,
-      required final String url}) = _$_Item;
+      required final String url,
+      final dynamic isSelected}) = _$_Item;
   const _Item._() : super._();
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
@@ -173,6 +192,8 @@ abstract class _Item extends Item {
   String get title;
   @override
   String get url;
+  @override
+  dynamic get isSelected;
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;

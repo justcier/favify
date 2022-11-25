@@ -24,9 +24,13 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     PlayRoute.name: (routeData) {
+      final args = routeData.argsAs<PlayRouteArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const PlayPage(),
+        child: PlayPage(
+          category: args.category,
+          key: args.key,
+        ),
       );
     },
   };
@@ -58,12 +62,34 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [PlayPage]
-class PlayRoute extends PageRouteInfo<void> {
-  const PlayRoute()
-      : super(
+class PlayRoute extends PageRouteInfo<PlayRouteArgs> {
+  PlayRoute({
+    required Category category,
+    Key? key,
+  }) : super(
           PlayRoute.name,
           path: '/play-page',
+          args: PlayRouteArgs(
+            category: category,
+            key: key,
+          ),
         );
 
   static const String name = 'PlayRoute';
+}
+
+class PlayRouteArgs {
+  const PlayRouteArgs({
+    required this.category,
+    this.key,
+  });
+
+  final Category category;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PlayRouteArgs{category: $category, key: $key}';
+  }
 }

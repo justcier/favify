@@ -11,6 +11,7 @@ class Item with _$Item {
     required String id,
     required String title,
     required String url,
+    @Default(false) isSelected,
   }) = _Item;
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
