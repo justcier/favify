@@ -17,6 +17,8 @@ import 'package:favify/features/categories/domain/use_cases/get_all_categories_u
     as _i8;
 import 'package:favify/features/categories/presentation/cubits/categories_cubit.dart'
     as _i3;
+import 'package:favify/features/play/presentation/cubits/play_cubit.dart'
+    as _i9;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart'
     as _i2; // ignore_for_file: unnecessary_lambdas
@@ -40,5 +42,6 @@ _i1.GetIt $initGetIt(
       _i7.CategoriesRepositoryImpl(get<_i4.CategoriesRemoteDataSource>()));
   gh.factory<_i8.GetAllCategoriesUseCase>(
       () => _i8.GetAllCategoriesUseCase(get<_i6.CategoriesRepository>()));
+  gh.factory<_i9.PlayCubit>(() => _i9.PlayCubit());
   return get;
 }
