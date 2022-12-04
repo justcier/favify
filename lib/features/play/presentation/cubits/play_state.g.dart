@@ -14,10 +14,12 @@ _$_PlayState _$$_PlayStateFromJson(Map<String, dynamic> json) => _$_PlayState(
               ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      isWinnerDetermined: json['isWinnerDetermined'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_PlayStateToJson(_$_PlayState instance) =>
     <String, dynamic>{
       'category': instance.category,
       'winnerItems': instance.winnerItems,
+      'isWinnerDetermined': instance.isWinnerDetermined,
     };

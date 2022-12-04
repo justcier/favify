@@ -13,6 +13,7 @@ class PlayState with _$PlayState {
   const factory PlayState({
     Category? category,
     @Default([]) List<Item> winnerItems,
+    @Default(false) bool isWinnerDetermined,
   }) = _PlayState;
 
   factory PlayState.initial() => const PlayState();

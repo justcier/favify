@@ -22,6 +22,7 @@ PlayState _$PlayStateFromJson(Map<String, dynamic> json) {
 mixin _$PlayState {
   Category? get category => throw _privateConstructorUsedError;
   List<Item> get winnerItems => throw _privateConstructorUsedError;
+  bool get isWinnerDetermined => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,8 @@ abstract class $PlayStateCopyWith<$Res> {
   factory $PlayStateCopyWith(PlayState value, $Res Function(PlayState) then) =
       _$PlayStateCopyWithImpl<$Res, PlayState>;
   @useResult
-  $Res call({Category? category, List<Item> winnerItems});
+  $Res call(
+      {Category? category, List<Item> winnerItems, bool isWinnerDetermined});
 
   $CategoryCopyWith<$Res>? get category;
 }
@@ -54,6 +56,7 @@ class _$PlayStateCopyWithImpl<$Res, $Val extends PlayState>
   $Res call({
     Object? category = freezed,
     Object? winnerItems = null,
+    Object? isWinnerDetermined = null,
   }) {
     return _then(_value.copyWith(
       category: freezed == category
@@ -64,6 +67,10 @@ class _$PlayStateCopyWithImpl<$Res, $Val extends PlayState>
           ? _value.winnerItems
           : winnerItems // ignore: cast_nullable_to_non_nullable
               as List<Item>,
+      isWinnerDetermined: null == isWinnerDetermined
+          ? _value.isWinnerDetermined
+          : isWinnerDetermined // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -87,7 +94,8 @@ abstract class _$$_PlayStateCopyWith<$Res> implements $PlayStateCopyWith<$Res> {
       __$$_PlayStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Category? category, List<Item> winnerItems});
+  $Res call(
+      {Category? category, List<Item> winnerItems, bool isWinnerDetermined});
 
   @override
   $CategoryCopyWith<$Res>? get category;
@@ -106,6 +114,7 @@ class __$$_PlayStateCopyWithImpl<$Res>
   $Res call({
     Object? category = freezed,
     Object? winnerItems = null,
+    Object? isWinnerDetermined = null,
   }) {
     return _then(_$_PlayState(
       category: freezed == category
@@ -116,6 +125,10 @@ class __$$_PlayStateCopyWithImpl<$Res>
           ? _value._winnerItems
           : winnerItems // ignore: cast_nullable_to_non_nullable
               as List<Item>,
+      isWinnerDetermined: null == isWinnerDetermined
+          ? _value.isWinnerDetermined
+          : isWinnerDetermined // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -123,7 +136,10 @@ class __$$_PlayStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PlayState extends _PlayState {
-  const _$_PlayState({this.category, final List<Item> winnerItems = const []})
+  const _$_PlayState(
+      {this.category,
+      final List<Item> winnerItems = const [],
+      this.isWinnerDetermined = false})
       : _winnerItems = winnerItems,
         super._();
 
@@ -141,8 +157,12 @@ class _$_PlayState extends _PlayState {
   }
 
   @override
+  @JsonKey()
+  final bool isWinnerDetermined;
+
+  @override
   String toString() {
-    return 'PlayState(category: $category, winnerItems: $winnerItems)';
+    return 'PlayState(category: $category, winnerItems: $winnerItems, isWinnerDetermined: $isWinnerDetermined)';
   }
 
   @override
@@ -153,13 +173,15 @@ class _$_PlayState extends _PlayState {
             (identical(other.category, category) ||
                 other.category == category) &&
             const DeepCollectionEquality()
-                .equals(other._winnerItems, _winnerItems));
+                .equals(other._winnerItems, _winnerItems) &&
+            (identical(other.isWinnerDetermined, isWinnerDetermined) ||
+                other.isWinnerDetermined == isWinnerDetermined));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, category, const DeepCollectionEquality().hash(_winnerItems));
+  int get hashCode => Object.hash(runtimeType, category,
+      const DeepCollectionEquality().hash(_winnerItems), isWinnerDetermined);
 
   @JsonKey(ignore: true)
   @override
@@ -177,7 +199,9 @@ class _$_PlayState extends _PlayState {
 
 abstract class _PlayState extends PlayState {
   const factory _PlayState(
-      {final Category? category, final List<Item> winnerItems}) = _$_PlayState;
+      {final Category? category,
+      final List<Item> winnerItems,
+      final bool isWinnerDetermined}) = _$_PlayState;
   const _PlayState._() : super._();
 
   factory _PlayState.fromJson(Map<String, dynamic> json) =
@@ -187,6 +211,8 @@ abstract class _PlayState extends PlayState {
   Category? get category;
   @override
   List<Item> get winnerItems;
+  @override
+  bool get isWinnerDetermined;
   @override
   @JsonKey(ignore: true)
   _$$_PlayStateCopyWith<_$_PlayState> get copyWith =>

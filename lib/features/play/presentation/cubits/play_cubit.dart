@@ -19,11 +19,39 @@ class PlayCubit extends Cubit<PlayState> {
 
   void deleteFirstAndSecondItem() {
     final List<Item> deletedItems = [...state.category!.items]
-      ..removeRange(0, 1);
+      ..removeAt(0)
+      ..removeAt(0);
     emit(
       state.copyWith(
         category: state.category!.copyWith(items: deletedItems),
       ),
     );
+  }
+
+  void chooseWinner(Item winnerItem) {
+    addWinnerToWinnerList(winnerItem);
+    deleteFirstAndSecondItem();
+    if (state.winnerItems.length == 1 && state.category!.items.isEmpty) {
+      emit(state.copyWith(isWinnerDetermined: true));
+    } else if (state.category!.items.isEmpty) {
+      emit(
+        state.copyWith(
+          category: state.category!.copyWith(items: state.winnerItems),
+        ),
+      );
+      emit(state.copyWith(winnerItems: []));
+      // } else if (state.category!.items.length == 1) {
+    }
+    // if (state.category!.items.isEmpty) {
+    //   emit(
+    //     state.copyWith(
+    //       category: state.category!.copyWith(items: state.winnerItems),
+    //     ),
+    //   );
+    //   emit(state.copyWith(winnerItems: []));
+    //   // } else if (state.category!.items.length == 1) {
+    // } else if (state.winnerItems.length == 1 && state.category!.items.isEmpty) {
+    //   emit(state.copyWith(isWinnerDetermined: true));
+    // }
   }
 }

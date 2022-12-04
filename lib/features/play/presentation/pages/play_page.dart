@@ -1,10 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/features/categories/domain/models/item/item.dart';
 import 'package:favify/features/play/presentation/cubits/play_cubit.dart';
+import 'package:favify/features/play/presentation/cubits/play_state.dart';
 import 'package:favify/services/injection_service.dart';
+import 'package:favify/services/navigation_service.dart';
 import 'package:favify/style/color_tokens.dart';
 import 'package:favify/style/dimensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PlayPage extends StatefulWidget {
   final Category category;
@@ -22,7 +26,6 @@ class _PlayPageState extends State<PlayPage> {
   void initState() {
     super.initState();
     playCubit.updateAndSortCategory(widget.category);
-    print(playCubit.state.category);
   }
 
   @override
@@ -32,38 +35,45 @@ class _PlayPageState extends State<PlayPage> {
         title: Text(widget.category.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _CategoryItemTile(
-              item: playCubit.state.category!.items[0],
-              onTap: () {
-                playCubit.addWinnerToWinnerList(
-                  playCubit.state.category!.items[0],
-                );
-                playCubit.deleteFirstAndSecondItem();
-              },
-            ),
-            const SizedBox(height: Dimensions.sizeM),
-            const Text(
-              'VS',
-              style: TextStyle(
-                color: ColorTokens.secondaryColor,
-                fontSize: Dimensions.sizeXXL,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: Dimensions.sizeM),
-            _CategoryItemTile(
-              item: playCubit.state.category!.items[1],
-              onTap: () {
-                playCubit.addWinnerToWinnerList(
-                  playCubit.state.category!.items[1],
-                );
-                playCubit.deleteFirstAndSecondItem();
-              },
-            ),
-          ],
+        child: BlocConsumer<PlayCubit, PlayState>(
+          bloc: playCubit,
+          listener: (context, state) {
+            if (state.isWinnerDetermined) {
+              context.router.replace(
+                WinnerRoute(category: state.category!),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state.category!.items.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _CategoryItemTile(
+                  item: playCubit.state.category!.items[0],
+                  onTap: () => playCubit
+                      .chooseWinner(playCubit.state.category!.items[0]),
+                ),
+                const SizedBox(height: Dimensions.sizeM),
+                const Text(
+                  'VS',
+                  style: TextStyle(
+                    color: ColorTokens.secondaryColor,
+                    fontSize: Dimensions.sizeXXL,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: Dimensions.sizeM),
+                _CategoryItemTile(
+                  item: playCubit.state.category!.items[1],
+                  onTap: () => playCubit
+                      .chooseWinner(playCubit.state.category!.items[1]),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
