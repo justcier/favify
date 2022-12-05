@@ -10,7 +10,12 @@ class PlayCubit extends Cubit<PlayState> {
 
   void updateAndSortCategory(Category category) {
     final List<Item> shuffledItems = [...category.items]..shuffle();
-    emit(state.copyWith(category: category.copyWith(items: shuffledItems)));
+    emit(
+      state.copyWith(
+        category: category.copyWith(items: shuffledItems),
+        unmodifiedCategory: category,
+      ),
+    );
   }
 
   void addWinnerToWinnerList(Item winnerItem) {
@@ -31,27 +36,17 @@ class PlayCubit extends Cubit<PlayState> {
   void chooseWinner(Item winnerItem) {
     addWinnerToWinnerList(winnerItem);
     deleteFirstAndSecondItem();
-    if (state.winnerItems.length == 1 && state.category!.items.isEmpty) {
-      emit(state.copyWith(isWinnerDetermined: true));
-    } else if (state.category!.items.isEmpty) {
+
+    if (state.category!.items.isEmpty) {
       emit(
         state.copyWith(
           category: state.category!.copyWith(items: state.winnerItems),
         ),
       );
       emit(state.copyWith(winnerItems: []));
-      // } else if (state.category!.items.length == 1) {
     }
-    // if (state.category!.items.isEmpty) {
-    //   emit(
-    //     state.copyWith(
-    //       category: state.category!.copyWith(items: state.winnerItems),
-    //     ),
-    //   );
-    //   emit(state.copyWith(winnerItems: []));
-    //   // } else if (state.category!.items.length == 1) {
-    // } else if (state.winnerItems.length == 1 && state.category!.items.isEmpty) {
-    //   emit(state.copyWith(isWinnerDetermined: true));
-    // }
+    if (state.category!.items.length == 1) {
+      emit(state.copyWith(isWinnerDetermined: true));
+    }
   }
 }

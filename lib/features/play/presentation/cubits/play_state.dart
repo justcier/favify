@@ -12,6 +12,8 @@ class PlayState with _$PlayState {
 
   const factory PlayState({
     Category? category,
+    //Unmodified category is needed for Play Again option on Winner Page
+    Category? unmodifiedCategory,
     @Default([]) List<Item> winnerItems,
     @Default(false) bool isWinnerDetermined,
   }) = _PlayState;

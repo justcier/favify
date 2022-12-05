@@ -5,6 +5,7 @@ import 'package:favify/features/categories/domain/models/category/category.dart'
 import 'package:favify/features/home/presentation/widgets/category_item.dart';
 import 'package:favify/style/color_tokens.dart';
 import 'package:favify/style/dimensions.dart';
+import 'package:favify/style/text_style_tokens.dart';
 import 'package:flutter/material.dart';
 
 class CategoryListContent extends StatelessWidget {
@@ -37,11 +38,7 @@ class CategoryListContent extends StatelessWidget {
                 children: [
                   const Text(
                     Strings.categoryListTitle,
-                    style: TextStyle(
-                      color: ColorTokens.secondaryColor,
-                      fontSize: Dimensions.sizeXXL,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyleTokens.mainTitle,
                   ),
                   SizedBox(
                     height: Dimensions.mainScreenListViewHeight,

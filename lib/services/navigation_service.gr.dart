@@ -38,7 +38,8 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: WinnerPage(
-          category: args.category,
+          winnerItem: args.winnerItem,
+          unmodifiedCategory: args.unmodifiedCategory,
           key: args.key,
         ),
       );
@@ -112,13 +113,15 @@ class PlayRouteArgs {
 /// [WinnerPage]
 class WinnerRoute extends PageRouteInfo<WinnerRouteArgs> {
   WinnerRoute({
-    required Category category,
+    required Item winnerItem,
+    required Category unmodifiedCategory,
     Key? key,
   }) : super(
           WinnerRoute.name,
           path: '/winner-page',
           args: WinnerRouteArgs(
-            category: category,
+            winnerItem: winnerItem,
+            unmodifiedCategory: unmodifiedCategory,
             key: key,
           ),
         );
@@ -128,16 +131,19 @@ class WinnerRoute extends PageRouteInfo<WinnerRouteArgs> {
 
 class WinnerRouteArgs {
   const WinnerRouteArgs({
-    required this.category,
+    required this.winnerItem,
+    required this.unmodifiedCategory,
     this.key,
   });
 
-  final Category category;
+  final Item winnerItem;
+
+  final Category unmodifiedCategory;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'WinnerRouteArgs{category: $category, key: $key}';
+    return 'WinnerRouteArgs{winnerItem: $winnerItem, unmodifiedCategory: $unmodifiedCategory, key: $key}';
   }
 }

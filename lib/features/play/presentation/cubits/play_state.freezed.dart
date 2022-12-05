@@ -20,7 +20,9 @@ PlayState _$PlayStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlayState {
-  Category? get category => throw _privateConstructorUsedError;
+  Category? get category =>
+      throw _privateConstructorUsedError; //Unmodified category is needed for Play Again option on Winner Page
+  Category? get unmodifiedCategory => throw _privateConstructorUsedError;
   List<Item> get winnerItems => throw _privateConstructorUsedError;
   bool get isWinnerDetermined => throw _privateConstructorUsedError;
 
@@ -36,9 +38,13 @@ abstract class $PlayStateCopyWith<$Res> {
       _$PlayStateCopyWithImpl<$Res, PlayState>;
   @useResult
   $Res call(
-      {Category? category, List<Item> winnerItems, bool isWinnerDetermined});
+      {Category? category,
+      Category? unmodifiedCategory,
+      List<Item> winnerItems,
+      bool isWinnerDetermined});
 
   $CategoryCopyWith<$Res>? get category;
+  $CategoryCopyWith<$Res>? get unmodifiedCategory;
 }
 
 /// @nodoc
@@ -55,6 +61,7 @@ class _$PlayStateCopyWithImpl<$Res, $Val extends PlayState>
   @override
   $Res call({
     Object? category = freezed,
+    Object? unmodifiedCategory = freezed,
     Object? winnerItems = null,
     Object? isWinnerDetermined = null,
   }) {
@@ -62,6 +69,10 @@ class _$PlayStateCopyWithImpl<$Res, $Val extends PlayState>
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
+              as Category?,
+      unmodifiedCategory: freezed == unmodifiedCategory
+          ? _value.unmodifiedCategory
+          : unmodifiedCategory // ignore: cast_nullable_to_non_nullable
               as Category?,
       winnerItems: null == winnerItems
           ? _value.winnerItems
@@ -85,6 +96,18 @@ class _$PlayStateCopyWithImpl<$Res, $Val extends PlayState>
       return _then(_value.copyWith(category: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res>? get unmodifiedCategory {
+    if (_value.unmodifiedCategory == null) {
+      return null;
+    }
+
+    return $CategoryCopyWith<$Res>(_value.unmodifiedCategory!, (value) {
+      return _then(_value.copyWith(unmodifiedCategory: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -95,10 +118,15 @@ abstract class _$$_PlayStateCopyWith<$Res> implements $PlayStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {Category? category, List<Item> winnerItems, bool isWinnerDetermined});
+      {Category? category,
+      Category? unmodifiedCategory,
+      List<Item> winnerItems,
+      bool isWinnerDetermined});
 
   @override
   $CategoryCopyWith<$Res>? get category;
+  @override
+  $CategoryCopyWith<$Res>? get unmodifiedCategory;
 }
 
 /// @nodoc
@@ -113,6 +141,7 @@ class __$$_PlayStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? category = freezed,
+    Object? unmodifiedCategory = freezed,
     Object? winnerItems = null,
     Object? isWinnerDetermined = null,
   }) {
@@ -120,6 +149,10 @@ class __$$_PlayStateCopyWithImpl<$Res>
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
+              as Category?,
+      unmodifiedCategory: freezed == unmodifiedCategory
+          ? _value.unmodifiedCategory
+          : unmodifiedCategory // ignore: cast_nullable_to_non_nullable
               as Category?,
       winnerItems: null == winnerItems
           ? _value._winnerItems
@@ -138,6 +171,7 @@ class __$$_PlayStateCopyWithImpl<$Res>
 class _$_PlayState extends _PlayState {
   const _$_PlayState(
       {this.category,
+      this.unmodifiedCategory,
       final List<Item> winnerItems = const [],
       this.isWinnerDetermined = false})
       : _winnerItems = winnerItems,
@@ -148,6 +182,9 @@ class _$_PlayState extends _PlayState {
 
   @override
   final Category? category;
+//Unmodified category is needed for Play Again option on Winner Page
+  @override
+  final Category? unmodifiedCategory;
   final List<Item> _winnerItems;
   @override
   @JsonKey()
@@ -162,7 +199,7 @@ class _$_PlayState extends _PlayState {
 
   @override
   String toString() {
-    return 'PlayState(category: $category, winnerItems: $winnerItems, isWinnerDetermined: $isWinnerDetermined)';
+    return 'PlayState(category: $category, unmodifiedCategory: $unmodifiedCategory, winnerItems: $winnerItems, isWinnerDetermined: $isWinnerDetermined)';
   }
 
   @override
@@ -172,6 +209,8 @@ class _$_PlayState extends _PlayState {
             other is _$_PlayState &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.unmodifiedCategory, unmodifiedCategory) ||
+                other.unmodifiedCategory == unmodifiedCategory) &&
             const DeepCollectionEquality()
                 .equals(other._winnerItems, _winnerItems) &&
             (identical(other.isWinnerDetermined, isWinnerDetermined) ||
@@ -180,7 +219,7 @@ class _$_PlayState extends _PlayState {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, category,
+  int get hashCode => Object.hash(runtimeType, category, unmodifiedCategory,
       const DeepCollectionEquality().hash(_winnerItems), isWinnerDetermined);
 
   @JsonKey(ignore: true)
@@ -200,6 +239,7 @@ class _$_PlayState extends _PlayState {
 abstract class _PlayState extends PlayState {
   const factory _PlayState(
       {final Category? category,
+      final Category? unmodifiedCategory,
       final List<Item> winnerItems,
       final bool isWinnerDetermined}) = _$_PlayState;
   const _PlayState._() : super._();
@@ -209,6 +249,8 @@ abstract class _PlayState extends PlayState {
 
   @override
   Category? get category;
+  @override //Unmodified category is needed for Play Again option on Winner Page
+  Category? get unmodifiedCategory;
   @override
   List<Item> get winnerItems;
   @override
