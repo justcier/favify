@@ -41,9 +41,9 @@ class PlayCubit extends Cubit<PlayState> {
       emit(
         state.copyWith(
           category: state.category!.copyWith(items: state.winnerItems),
+          winnerItems: [],
         ),
       );
-      emit(state.copyWith(winnerItems: []));
     }
     if (state.category!.items.length == 1) {
       emit(state.copyWith(isWinnerDetermined: true));
