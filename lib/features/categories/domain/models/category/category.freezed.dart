@@ -23,7 +23,7 @@ mixin _$Category {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  List<dynamic> get items => throw _privateConstructorUsedError;
+  List<Item> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
-  $Res call({String id, String title, String description, List<dynamic> items});
+  $Res call({String id, String title, String description, List<Item> items});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Item>,
     ) as $Val);
   }
 }
@@ -85,7 +85,7 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       __$$_CategoryCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, String description, List<dynamic> items});
+  $Res call({String id, String title, String description, List<Item> items});
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class __$$_CategoryCopyWithImpl<$Res>
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Item>,
     ));
   }
 }
@@ -132,7 +132,7 @@ class _$_Category extends _Category {
       {required this.id,
       required this.title,
       required this.description,
-      final List<dynamic> items = const []})
+      required final List<Item> items})
       : _items = items,
         super._();
 
@@ -145,10 +145,9 @@ class _$_Category extends _Category {
   final String title;
   @override
   final String description;
-  final List<dynamic> _items;
+  final List<Item> _items;
   @override
-  @JsonKey()
-  List<dynamic> get items {
+  List<Item> get items {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -194,7 +193,7 @@ abstract class _Category extends Category {
       {required final String id,
       required final String title,
       required final String description,
-      final List<dynamic> items}) = _$_Category;
+      required final List<Item> items}) = _$_Category;
   const _Category._() : super._();
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
@@ -206,7 +205,7 @@ abstract class _Category extends Category {
   @override
   String get description;
   @override
-  List<dynamic> get items;
+  List<Item> get items;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryCopyWith<_$_Category> get copyWith =>

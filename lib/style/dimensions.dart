@@ -6,4 +6,5 @@ class Dimensions {
   static const double sizeXL = 16.0;
   static const double sizeXXL = 20.0;
   static const double mainScreenListViewHeight = 250;
+  static const double mainScreenListViewWidth = 300;
 }

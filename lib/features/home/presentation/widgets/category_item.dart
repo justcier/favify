@@ -1,18 +1,18 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:favify/common/widgets/text_button_widget.dart';
 import 'package:favify/core/strings.dart';
+import 'package:favify/features/categories/domain/models/category/category.dart';
+import 'package:favify/services/navigation_service.dart';
 import 'package:favify/style/color_tokens.dart';
 import 'package:favify/style/dimensions.dart';
+import 'package:favify/style/text_style_tokens.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final String description;
+  final Category category;
 
   const CategoryItem({
-    required this.id,
-    required this.title,
-    required this.description,
+    required this.category,
     Key? key,
   }) : super(key: key);
 
@@ -32,27 +32,21 @@ class CategoryItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
-                style: const TextStyle(
-                  color: ColorTokens.mainFontColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                category.title,
+                style: TextStyleTokens.mainTitleWhite,
               ),
               Text(
-                description,
-                style: const TextStyle(
-                  color: ColorTokens.mainFontColor,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w300,
-                ),
+                category.description,
+                style: TextStyleTokens.description,
               ),
             ],
           ),
           TextButtonWidget.main(
             text: Strings.listCategoryButtonText,
-            onPressed: () {},
-          )
+            onPressed: () => context.router.push(
+              PlayRoute(category: category),
+            ),
+          ),
         ],
       ),
     );
