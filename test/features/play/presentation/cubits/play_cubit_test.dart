@@ -19,8 +19,12 @@ void main() {
       build: buildCubit,
       act: (cubit) => cubit.updateAndSortCategory(tCategory),
       skip: 1,
-      verify: (cubit) =>
-          [expect(shuffledItems, isNot(cubit.state.category!.items))],
+      verify: (cubit) => [
+        expect(
+          shuffledItems,
+          isNot(cubit.state.category!.items),
+        )
+      ],
     );
   });
 
@@ -57,18 +61,6 @@ void main() {
 
   group('chooseWinner', () {
     final Item tWinnerItem = tCategory.items.first;
-    final List<Item> tWinnerItems = [
-      tCategory.items.first,
-      tCategory.items.last,
-    ];
-
-    blocTest<PlayCubit, PlayState>(
-      'should emit correct states when items list is not empty and has more than 1 item',
-      seed: () => initialState.copyWith(category: tCategory),
-      build: buildCubit,
-      act: (cubit) => cubit.chooseWinner(tWinnerItem),
-      skip: 2,
-    );
 
     blocTest<PlayCubit, PlayState>(
       'should emit correct states when items list is empty',

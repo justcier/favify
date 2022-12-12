@@ -30,7 +30,7 @@ class WinnerPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'The winner of category "${unmodifiedCategory.title}" is:',
+              Strings.winnerMsg(unmodifiedCategory.title),
               style: TextStyleTokens.mainTitle,
             ),
             const SizedBox(height: Dimensions.sizeM),
@@ -41,6 +41,7 @@ class WinnerPage extends StatelessWidget {
               children: [
                 TextButtonWidget.main(
                   text: Strings.buttonViewAllCategories,
+                  // TODO Add pushing to AllCategoriesPage when page will be done
                   onPressed: () {},
                 ),
                 TextButtonWidget.main(

@@ -36,7 +36,7 @@ class CategoryListContent extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
+                  Text(
                     Strings.categoryListTitle,
                     style: TextStyleTokens.mainTitle,
                   ),

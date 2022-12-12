@@ -5,4 +5,9 @@ class Strings {
   static const String winnerCategoryButtonPlayAgain = 'Play again';
   static const String buttonViewAllCategories = 'View all categories';
   static const String secondaryButtonText = 'View all';
+  static const String versus = 'VS';
+
+  static String winnerMsg(String categoryName) {
+    return 'The winner of category "$categoryName" is:';
+  }
 }

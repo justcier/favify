@@ -28,6 +28,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    categoriesCubit.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(Strings.appBarTitle)),

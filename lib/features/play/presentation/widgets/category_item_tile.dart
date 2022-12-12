@@ -21,14 +21,14 @@ class CategoryItemTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: ColorTokens.secondaryColor),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(Dimensions.sizeXL),
         ),
-        width: 300,
-        height: 250,
+        width: Dimensions.mainScreenListViewWidth,
+        height: Dimensions.mainScreenListViewHeight,
         child: Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(Dimensions.sizeXL),
               child: Image.network(
                 item.url,
                 width: double.infinity,
@@ -38,7 +38,7 @@ class CategoryItemTile extends StatelessWidget {
             Positioned(
               bottom: Dimensions.sizeL,
               child: Container(
-                width: 300,
+                width: Dimensions.mainScreenListViewWidth,
                 color: ColorTokens.secondaryColor.withOpacity(0.7),
                 padding: const EdgeInsets.symmetric(
                   vertical: Dimensions.sizeM,

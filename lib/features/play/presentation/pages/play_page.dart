@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:favify/core/strings.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
+import 'package:favify/features/categories/domain/models/item/item.dart';
 import 'package:favify/features/play/presentation/cubits/play_cubit.dart';
 import 'package:favify/features/play/presentation/cubits/play_state.dart';
 import 'package:favify/features/play/presentation/widgets/category_item_tile.dart';
@@ -29,6 +31,12 @@ class _PlayPageState extends State<PlayPage> {
   }
 
   @override
+  void dispose() {
+    playCubit.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +45,7 @@ class _PlayPageState extends State<PlayPage> {
       body: Center(
         child: BlocConsumer<PlayCubit, PlayState>(
           bloc: playCubit,
-          listener: (context, state) {
+          listener: (context, PlayState state) {
             if (state.isWinnerDetermined) {
               context.router.replace(
                 WinnerRoute(
@@ -47,28 +55,27 @@ class _PlayPageState extends State<PlayPage> {
               );
             }
           },
-          builder: (context, state) {
-            if (state.category!.items.length == 1) {
+          builder: (_, PlayState state) {
+            final List<Item> items = state.category!.items;
+            if (items.length == 1) {
               return const SizedBox.shrink();
             }
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CategoryItemTile(
-                  item: playCubit.state.category!.items.first,
-                  onTap: () => playCubit
-                      .chooseWinner(playCubit.state.category!.items.first),
+                  item: items.first,
+                  onTap: () => playCubit.chooseWinner(items.first),
                 ),
                 const SizedBox(height: Dimensions.sizeM),
-                const Text(
-                  'VS',
+                Text(
+                  Strings.versus,
                   style: TextStyleTokens.mainTitle,
                 ),
                 const SizedBox(height: Dimensions.sizeM),
                 CategoryItemTile(
-                  item: playCubit.state.category!.items[1],
-                  onTap: () => playCubit
-                      .chooseWinner(playCubit.state.category!.items[1]),
+                  item: items[1],
+                  onTap: () => playCubit.chooseWinner(items[1]),
                 ),
               ],
             );
