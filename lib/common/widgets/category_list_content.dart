@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:favify/common/widgets/text_button_widget.dart';
 import 'package:favify/core/extensions/build_context_extensions.dart';
 import 'package:favify/core/strings.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/features/home/presentation/widgets/category_item.dart';
+import 'package:favify/services/navigation_service.dart';
 import 'package:favify/style/color_tokens.dart';
 import 'package:favify/style/dimensions.dart';
 import 'package:favify/style/text_style_tokens.dart';
@@ -56,7 +58,9 @@ class CategoryListContent extends StatelessWidget {
               height: Dimensions.sizeXL,
               child: TextButtonWidget.secondary(
                 text: Strings.secondaryButtonText,
-                onPressed: () {},
+                onPressed: () => context.router.push(
+                  const AllCategoriesRoute(),
+                ),
               ),
             ),
           ],

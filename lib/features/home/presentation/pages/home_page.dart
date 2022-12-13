@@ -1,4 +1,5 @@
 import 'package:favify/common/widgets/category_list_content.dart';
+import 'package:favify/common/widgets/common_scaffold.dart';
 import 'package:favify/core/strings.dart';
 import 'package:favify/features/categories/presentation/cubits/categories_cubit.dart';
 import 'package:favify/features/categories/presentation/cubits/categories_state.dart';
@@ -35,8 +36,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text(Strings.appBarTitle)),
+    return CommonScaffold(
+      title: Strings.appBarTitle,
       body: BlocBuilder<CategoriesCubit, CategoriesState>(
         bloc: categoriesCubit,
         builder: (_, CategoriesState state) {
