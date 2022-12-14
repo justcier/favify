@@ -39,10 +39,8 @@ class WinnerPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButtonWidget.main(
-                  text: Strings.buttonViewAllCategories,
-                  onPressed: () => context.router.replace(
-                    const AllCategoriesRoute(),
-                  ),
+                  text: Strings.backToMenuButton,
+                  onPressed: context.router.popUntilRoot,
                 ),
                 TextButtonWidget.main(
                   text: Strings.winnerCategoryButtonPlayAgain,

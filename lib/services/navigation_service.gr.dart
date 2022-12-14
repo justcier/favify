@@ -45,9 +45,13 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     AllCategoriesRoute.name: (routeData) {
+      final args = routeData.argsAs<AllCategoriesRouteArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const AllCategoriesPage(),
+        child: AllCategoriesPage(
+          categories: args.categories,
+          key: args.key,
+        ),
       );
     },
   };
@@ -160,12 +164,34 @@ class WinnerRouteArgs {
 
 /// generated route for
 /// [AllCategoriesPage]
-class AllCategoriesRoute extends PageRouteInfo<void> {
-  const AllCategoriesRoute()
-      : super(
+class AllCategoriesRoute extends PageRouteInfo<AllCategoriesRouteArgs> {
+  AllCategoriesRoute({
+    required List<Category> categories,
+    Key? key,
+  }) : super(
           AllCategoriesRoute.name,
           path: '/all-categories-page',
+          args: AllCategoriesRouteArgs(
+            categories: categories,
+            key: key,
+          ),
         );
 
   static const String name = 'AllCategoriesRoute';
+}
+
+class AllCategoriesRouteArgs {
+  const AllCategoriesRouteArgs({
+    required this.categories,
+    this.key,
+  });
+
+  final List<Category> categories;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AllCategoriesRouteArgs{categories: $categories, key: $key}';
+  }
 }
