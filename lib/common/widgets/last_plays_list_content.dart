@@ -1,14 +1,16 @@
 import 'package:favify/core/extensions/build_context_extensions.dart';
 import 'package:favify/core/strings.dart';
 import 'package:favify/features/all_categories/presentation/widgets/last_play_item.dart';
-import 'package:favify/features/categories/data/data_sources/categories_remote_data_source_impl.dart';
+import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/style/color_tokens.dart';
 import 'package:favify/style/dimensions.dart';
 import 'package:favify/style/text_style_tokens.dart';
 import 'package:flutter/material.dart';
 
 class LastPlaysListContent extends StatelessWidget {
-  const LastPlaysListContent({Key? key}) : super(key: key);
+  final List<Category> localWinnerCategories;
+  const LastPlaysListContent({required this.localWinnerCategories, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +39,9 @@ class LastPlaysListContent extends StatelessWidget {
                   SizedBox(
                     height: Dimensions.mainScreenListViewHeight,
                     child: ListView.builder(
-                      itemCount: 1,
+                      itemCount: localWinnerCategories.length,
                       itemBuilder: (_, i) => LastPlayItem(
-                        // TODO Test data. Change after local storage will be done.
-                        item: loadedCategories[i].items[i],
+                        item: localWinnerCategories[i].items[0],
                       ),
                     ),
                   ),

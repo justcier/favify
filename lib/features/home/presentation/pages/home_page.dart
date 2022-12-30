@@ -1,5 +1,6 @@
 import 'package:favify/common/widgets/category_list_content.dart';
 import 'package:favify/common/widgets/common_scaffold.dart';
+import 'package:favify/common/widgets/last_plays_list_content.dart';
 import 'package:favify/core/strings.dart';
 import 'package:favify/features/categories/presentation/cubits/categories_cubit.dart';
 import 'package:favify/features/categories/presentation/cubits/categories_state.dart';
@@ -44,8 +45,15 @@ class _HomePageState extends State<HomePage> {
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state.isLoaded) {
-            return CategoryListContent(
-              loadedCategories: state.categories,
+            return Column(
+              children: [
+                CategoryListContent(
+                  loadedCategories: state.categories,
+                ),
+                LastPlaysListContent(
+                  localWinnerCategories: state.localWinnerCategories,
+                ),
+              ],
             );
           }
           return const SizedBox.shrink();

@@ -26,8 +26,8 @@ class LastPlayItem extends StatelessWidget {
         children: [
           Column(
             children: [
-              const Text(
-                'Category: Film',
+              Text(
+                item.id,
                 style: TextStyleTokens.description,
               ),
               Text(

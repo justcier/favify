@@ -1,6 +1,5 @@
 import 'package:favify/common/widgets/category_list_content.dart';
 import 'package:favify/common/widgets/common_scaffold.dart';
-import 'package:favify/common/widgets/last_plays_list_content.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +19,8 @@ class AllCategoriesPage extends StatelessWidget {
         children: [
           CategoryListContent(
             loadedCategories: categories,
-            isViewAllButtonVisible: true,
+            isViewAllButtonVisible: false,
           ),
-          const LastPlaysListContent(),
         ],
       ),
     );

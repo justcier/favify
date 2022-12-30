@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CategoriesState {
   List<Category> get categories => throw _privateConstructorUsedError;
+  List<Category> get localWinnerCategories =>
+      throw _privateConstructorUsedError;
   CategoriesStateStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +32,10 @@ abstract class $CategoriesStateCopyWith<$Res> {
           CategoriesState value, $Res Function(CategoriesState) then) =
       _$CategoriesStateCopyWithImpl<$Res, CategoriesState>;
   @useResult
-  $Res call({List<Category> categories, CategoriesStateStatus status});
+  $Res call(
+      {List<Category> categories,
+      List<Category> localWinnerCategories,
+      CategoriesStateStatus status});
 }
 
 /// @nodoc
@@ -47,12 +52,17 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
   @override
   $Res call({
     Object? categories = null,
+    Object? localWinnerCategories = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
+      localWinnerCategories: null == localWinnerCategories
+          ? _value.localWinnerCategories
+          : localWinnerCategories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
       status: null == status
           ? _value.status
@@ -70,7 +80,10 @@ abstract class _$$_CategoriesStateCopyWith<$Res>
       __$$_CategoriesStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Category> categories, CategoriesStateStatus status});
+  $Res call(
+      {List<Category> categories,
+      List<Category> localWinnerCategories,
+      CategoriesStateStatus status});
 }
 
 /// @nodoc
@@ -85,12 +98,17 @@ class __$$_CategoriesStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? categories = null,
+    Object? localWinnerCategories = null,
     Object? status = null,
   }) {
     return _then(_$_CategoriesState(
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
+      localWinnerCategories: null == localWinnerCategories
+          ? _value._localWinnerCategories
+          : localWinnerCategories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
       status: null == status
           ? _value.status
@@ -104,8 +122,11 @@ class __$$_CategoriesStateCopyWithImpl<$Res>
 
 class _$_CategoriesState extends _CategoriesState {
   const _$_CategoriesState(
-      {final List<Category> categories = const [], required this.status})
+      {final List<Category> categories = const [],
+      final List<Category> localWinnerCategories = const [],
+      required this.status})
       : _categories = categories,
+        _localWinnerCategories = localWinnerCategories,
         super._();
 
   final List<Category> _categories;
@@ -116,12 +137,20 @@ class _$_CategoriesState extends _CategoriesState {
     return EqualUnmodifiableListView(_categories);
   }
 
+  final List<Category> _localWinnerCategories;
+  @override
+  @JsonKey()
+  List<Category> get localWinnerCategories {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_localWinnerCategories);
+  }
+
   @override
   final CategoriesStateStatus status;
 
   @override
   String toString() {
-    return 'CategoriesState(categories: $categories, status: $status)';
+    return 'CategoriesState(categories: $categories, localWinnerCategories: $localWinnerCategories, status: $status)';
   }
 
   @override
@@ -131,12 +160,17 @@ class _$_CategoriesState extends _CategoriesState {
             other is _$_CategoriesState &&
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
+            const DeepCollectionEquality()
+                .equals(other._localWinnerCategories, _localWinnerCategories) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_categories), status);
+      runtimeType,
+      const DeepCollectionEquality().hash(_categories),
+      const DeepCollectionEquality().hash(_localWinnerCategories),
+      status);
 
   @JsonKey(ignore: true)
   @override
@@ -148,11 +182,14 @@ class _$_CategoriesState extends _CategoriesState {
 abstract class _CategoriesState extends CategoriesState {
   const factory _CategoriesState(
       {final List<Category> categories,
+      final List<Category> localWinnerCategories,
       required final CategoriesStateStatus status}) = _$_CategoriesState;
   const _CategoriesState._() : super._();
 
   @override
   List<Category> get categories;
+  @override
+  List<Category> get localWinnerCategories;
   @override
   CategoriesStateStatus get status;
   @override

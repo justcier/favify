@@ -16,6 +16,7 @@ class CategoriesState with _$CategoriesState {
 
   const factory CategoriesState({
     @Default([]) List<Category> categories,
+    @Default([]) List<Category> localWinnerCategories,
     required CategoriesStateStatus status,
   }) = _CategoriesState;
 

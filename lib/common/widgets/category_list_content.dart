@@ -16,7 +16,7 @@ class CategoryListContent extends StatelessWidget {
 
   const CategoryListContent({
     required this.loadedCategories,
-    this.isViewAllButtonVisible = false,
+    this.isViewAllButtonVisible = true,
     Key? key,
   }) : super(key: key);
 
@@ -56,7 +56,7 @@ class CategoryListContent extends StatelessWidget {
                 ],
               ),
             ),
-            if (!isViewAllButtonVisible)
+            if (isViewAllButtonVisible)
               SizedBox(
                 height: Dimensions.sizeXL,
                 child: TextButtonWidget.secondary(

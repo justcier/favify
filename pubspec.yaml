@@ -16,6 +16,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   get_it: ^7.2.0
   injectable: ^1.5.3
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   auto_route_generator: ^5.0.2
