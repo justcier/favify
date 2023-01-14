@@ -41,7 +41,7 @@ class LastPlaysListContent extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: localWinnerCategories.length,
                       itemBuilder: (_, i) => LastPlayItem(
-                        item: localWinnerCategories[i].items[0],
+                        localWinnerCategory: localWinnerCategories[i],
                       ),
                     ),
                   ),

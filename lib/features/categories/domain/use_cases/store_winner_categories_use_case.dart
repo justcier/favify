@@ -4,12 +4,11 @@ import 'package:favify/features/categories/domain/repositories/categories_reposi
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetLocalWinnerCategories implements UseCase<List<Category>, NoParams?> {
+class StoreWinnerCategoriesUseCase implements UseCase<void, List<Category>> {
   final CategoriesRepository _categoriesRepository;
 
-  GetLocalWinnerCategories(this._categoriesRepository);
-
+  StoreWinnerCategoriesUseCase(this._categoriesRepository);
   @override
-  List<Category> call([NoParams? params]) =>
-      _categoriesRepository.getStoredWinnerCategories();
+  void call(List<Category> winnerCategories) =>
+      _categoriesRepository.storeWinnerCategories(winnerCategories);
 }

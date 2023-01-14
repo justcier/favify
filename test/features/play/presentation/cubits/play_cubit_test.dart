@@ -1,19 +1,41 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/features/categories/domain/models/item/item.dart';
+import 'package:favify/features/categories/domain/use_cases/get_stored_winner_categories_use_case.dart';
+import 'package:favify/features/categories/domain/use_cases/store_winner_categories_use_case.dart';
 import 'package:favify/features/play/presentation/cubits/play_cubit.dart';
 import 'package:favify/features/play/presentation/cubits/play_state.dart';
+import 'package:favify/services/injection_service.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
+import '../../../../mocks.dart';
 import '../../../../test_data.dart';
 
 void main() {
+  final GetStoredWinnerCategoriesUseCase getStoredWinnerCategoriesUseCase =
+      MockGetStoredCategoriesUseCase();
+  final StoreWinnerCategoriesUseCase storeWinnerCategoriesUseCase =
+      MockStoreWinnerCategoriesUseCase();
+
   PlayCubit buildCubit() => PlayCubit();
   final PlayState initialState = PlayState.initial();
   final Category tCategory = tCategories.first;
 
+  setUpAll(() {
+    getIt
+      ..registerFactoryAsync<GetStoredWinnerCategoriesUseCase>(
+        () async => getStoredWinnerCategoriesUseCase,
+      )
+      ..registerFactoryAsync<StoreWinnerCategoriesUseCase>(
+        () async => storeWinnerCategoriesUseCase,
+      );
+    when(getStoredWinnerCategoriesUseCase.call).thenReturn([tCategories[0]]);
+  });
+
   group('updateAndSortCategory', () {
     final List<Item> shuffledItems = [...tCategory.items]..shuffle();
+    final now = DateTime.now();
     blocTest<PlayCubit, PlayState>(
       'should emit loaded category with shuffled items',
       build: buildCubit,
@@ -23,6 +45,10 @@ void main() {
         expect(
           shuffledItems,
           isNot(cubit.state.category!.items),
+        ),
+        expect(
+          cubit.state.category!.playedDate,
+          DateTime(now.year, now.month, now.day),
         )
       ],
     );

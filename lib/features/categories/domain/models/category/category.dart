@@ -13,6 +13,7 @@ class Category with _$Category {
     required String title,
     required String description,
     required List<Item> items,
+    DateTime? playedDate,
   }) = _Category;
 
   factory Category.fromJson(Map<String, dynamic> json) =>

@@ -11,4 +11,8 @@ class Strings {
   static String winnerMsg(String categoryName) {
     return 'The winner of category "$categoryName" is:';
   }
+
+  static String playedOnDate(String date) {
+    return 'Played on: $date';
+  }
 }

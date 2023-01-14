@@ -19,13 +19,15 @@ import 'package:favify/features/categories/domain/repositories/categories_reposi
     as _i10;
 import 'package:favify/features/categories/domain/use_cases/get_all_categories_use_case.dart'
     as _i12;
-import 'package:favify/features/categories/domain/use_cases/get_local_winner_categories_use_case.dart'
+import 'package:favify/features/categories/domain/use_cases/get_stored_winner_categories_use_case.dart'
     as _i13;
+import 'package:favify/features/categories/domain/use_cases/store_winner_categories_use_case.dart'
+    as _i14;
 import 'package:favify/features/categories/presentation/cubits/categories_cubit.dart'
     as _i3;
 import 'package:favify/features/play/presentation/cubits/play_cubit.dart'
     as _i6;
-import 'package:favify/services/registration_service.dart' as _i14;
+import 'package:favify/services/registration_service.dart' as _i15;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart'
@@ -60,10 +62,13 @@ _i1.GetIt $initGetIt(
   gh.factoryAsync<_i12.GetAllCategoriesUseCase>(() async =>
       _i12.GetAllCategoriesUseCase(
           await get.getAsync<_i10.CategoriesRepository>()));
-  gh.factoryAsync<_i13.GetLocalWinnerCategories>(() async =>
-      _i13.GetLocalWinnerCategories(
+  gh.factoryAsync<_i13.GetStoredWinnerCategoriesUseCase>(() async =>
+      _i13.GetStoredWinnerCategoriesUseCase(
+          await get.getAsync<_i10.CategoriesRepository>()));
+  gh.factoryAsync<_i14.StoreWinnerCategoriesUseCase>(() async =>
+      _i14.StoreWinnerCategoriesUseCase(
           await get.getAsync<_i10.CategoriesRepository>()));
   return get;
 }
 
-class _$RegisterService extends _i14.RegisterService {}
+class _$RegisterService extends _i15.RegisterService {}
