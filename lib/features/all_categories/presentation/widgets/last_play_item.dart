@@ -14,6 +14,9 @@ class LastPlayItem extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  static const double _imageHeight = 150;
+  static const double _imageWidth = 100;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +36,7 @@ class LastPlayItem extends StatelessWidget {
                 style: TextStyleTokens.description,
               ),
               Text(
-                localWinnerCategory.items[0].title,
+                localWinnerCategory.items.first.title,
                 style: TextStyleTokens.mainTitleWhite,
               ),
               Text(
@@ -48,10 +51,10 @@ class LastPlayItem extends StatelessWidget {
           Column(
             children: [
               SizedBox(
-                height: 150,
-                width: 100,
+                height: _imageHeight,
+                width: _imageWidth,
                 child: Image.network(
-                  localWinnerCategory.items[0].url,
+                  localWinnerCategory.items.first.url,
                   fit: BoxFit.cover,
                 ),
               ),

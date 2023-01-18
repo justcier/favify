@@ -7,6 +7,7 @@ class Strings {
   static const String viewAllButton = 'View all';
   static const String versus = 'VS';
   static const String lastPlaysListTitle = 'Your last plays:';
+  static const String allCategoryPageTitle = 'All Categories Page';
 
   static String winnerMsg(String categoryName) {
     return 'The winner of category "$categoryName" is:';

@@ -18,7 +18,7 @@ class PlayCubit extends Cubit<PlayState> {
       state.copyWith(
         category: category.copyWith(
           items: shuffledItems,
-          // Now is added to allowed testing of this code.
+          // Now is added to allow testing of this code.
           playedDate: DateTime(now.year, now.month, now.day),
         ),
         unmodifiedCategory: category,

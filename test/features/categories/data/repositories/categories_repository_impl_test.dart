@@ -50,8 +50,7 @@ void main() {
           final result = categoriesRepositoryImpl.getStoredWinnerCategories();
 
           // Assert
-          verify(() => categoriesLocalDataSource.getStoredWinnerCategories())
-              .called(1);
+          verify(categoriesLocalDataSource.getStoredWinnerCategories).called(1);
           expect(result, singleWinnerCategoryList);
         },
       );
@@ -63,8 +62,10 @@ void main() {
         'data source on a successful call',
         () {
           // Arrange
-          when(() => categoriesLocalDataSource
-              .storeWinnerCategories(singleWinnerCategoryList));
+          when(
+            () => categoriesLocalDataSource
+                .storeWinnerCategories(singleWinnerCategoryList),
+          );
 
           // Act
           categoriesRepositoryImpl

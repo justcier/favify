@@ -27,8 +27,10 @@ void main() {
       ..registerFactoryAsync<GetStoredWinnerCategoriesUseCase>(
         () async => getStoredWinnerCategoriesUseCase,
       );
+
     when(getAllCategoriesUseCase.call).thenReturn(tCategories);
-    when(getStoredWinnerCategoriesUseCase.call).thenReturn([tCategories[0]]);
+    when(getStoredWinnerCategoriesUseCase.call)
+        .thenReturn(singleWinnerCategoryList);
   });
 
   group('getAllCategories', () {
@@ -42,7 +44,7 @@ void main() {
         initialState.copyWith(
           status: CategoriesStateStatus.loaded,
           categories: tCategories,
-          localWinnerCategories: [tCategories[0]],
+          localWinnerCategories: singleWinnerCategoryList,
         ),
       ],
       verify: (_) => [
@@ -59,7 +61,7 @@ void main() {
       act: (cubit) => cubit.updateLocalCategories(),
       expect: () => [
         initialState.copyWith(
-          localWinnerCategories: [tCategories[0]],
+          localWinnerCategories: singleWinnerCategoryList,
         ),
       ],
       verify: (_) => [verify(getStoredWinnerCategoriesUseCase.call).called(1)],

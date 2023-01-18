@@ -22,15 +22,15 @@ class CategoriesLocalDataSourceImpl implements CategoriesLocalDataSource {
 
   @override
   List<Category> getStoredWinnerCategories() {
-    final String? allWinnerCategoriesString =
+    final String? winnerCategoriesString =
         _sharedPreferences.getString(SharedPrefsKeys.winnerCategoriesList);
 
-    if (allWinnerCategoriesString != null) {
-      final List<Category> allWinnerCategories =
-          (jsonDecode(allWinnerCategoriesString) as List)
+    if (winnerCategoriesString != null) {
+      final List<Category> winnerCategories =
+          (jsonDecode(winnerCategoriesString) as List)
               .map((e) => Category.fromJson(e as Map<String, dynamic>))
               .toList();
-      return allWinnerCategories;
+      return winnerCategories;
     } else {
       return [];
     }

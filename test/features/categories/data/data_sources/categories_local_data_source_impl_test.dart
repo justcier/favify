@@ -22,7 +22,8 @@ void main() {
         'should store winner categories',
         () async {
           // Arrange
-          final List<Category> winnerCategoriesToStore = [tCategories[0]];
+          final List<Category> winnerCategoriesToStore =
+              singleWinnerCategoryList;
           when(
             () => sharedPreferences.setString(captureAny(), captureAny()),
           ).thenAnswer((_) async => true);
@@ -47,8 +48,9 @@ void main() {
         () {
           // Arrange
           when(() => sharedPreferences.getString(captureAny()))
-              .thenAnswer((_) => jsonEncode([tCategories[0].toJson()]));
-          final List<Category> storedWinnerCategories = [tCategories[0]];
+              .thenAnswer((_) => jsonEncode([tCategories.first.toJson()]));
+          final List<Category> storedWinnerCategories =
+              singleWinnerCategoryList;
 
           // Act
           final result =

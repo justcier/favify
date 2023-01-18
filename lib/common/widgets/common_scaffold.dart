@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 class CommonScaffold extends StatelessWidget {
   final Widget body;
   final String title;
-  const CommonScaffold({required this.body, required this.title, Key? key})
-      : super(key: key);
+  const CommonScaffold({
+    required this.body,
+    required this.title,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

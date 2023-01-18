@@ -45,8 +45,8 @@ class WinnerPage extends StatelessWidget {
                 ),
                 TextButtonWidget.main(
                   text: Strings.winnerCategoryButtonPlayAgain,
-                  onPressed: () => context.router.replaceAll(
-                    [PlayRoute(category: unmodifiedCategory)],
+                  onPressed: () => context.router.replace(
+                    PlayRoute(category: unmodifiedCategory),
                   ),
                 ),
               ],

@@ -3,6 +3,8 @@ import 'package:favify/common/widgets/common_scaffold.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/strings.dart';
+
 class AllCategoriesPage extends StatelessWidget {
   final List<Category> categories;
 
@@ -14,14 +16,10 @@ class AllCategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      title: 'All Categories Page',
-      body: Column(
-        children: [
-          CategoryListContent(
-            loadedCategories: categories,
-            isViewAllButtonVisible: false,
-          ),
-        ],
+      title: Strings.allCategoryPageTitle,
+      body: CategoryListContent(
+        loadedCategories: categories,
+        isViewAllButtonVisible: false,
       ),
     );
   }
