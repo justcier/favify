@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:favify/common/widgets/common_scaffold.dart';
 import 'package:favify/core/strings.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/features/categories/domain/models/item/item.dart';
@@ -38,10 +39,8 @@ class _PlayPageState extends State<PlayPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.category.title),
-      ),
+    return CommonScaffold(
+      title: widget.category.title,
       body: Center(
         child: BlocConsumer<PlayCubit, PlayState>(
           bloc: playCubit,

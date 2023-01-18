@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:favify/common/widgets/common_scaffold.dart';
 import 'package:favify/common/widgets/text_button_widget.dart';
 import 'package:favify/core/strings.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
@@ -21,10 +22,8 @@ class WinnerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(unmodifiedCategory.title),
-      ),
+    return CommonScaffold(
+      title: unmodifiedCategory.title,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,9 +39,9 @@ class WinnerPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButtonWidget.main(
-                  text: Strings.buttonViewAllCategories,
-                  // TODO Add pushing to AllCategoriesPage when page will be done
-                  onPressed: () {},
+                  text: Strings.backToMenuButton,
+                  onPressed: () =>
+                      context.router.replaceAll([HomeRoute(updated: true)]),
                 ),
                 TextButtonWidget.main(
                   text: Strings.winnerCategoryButtonPlayAgain,

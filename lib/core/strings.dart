@@ -3,11 +3,17 @@ class Strings {
   static const String categoryListTitle = 'Choose Category to play:';
   static const String listCategoryButtonText = 'Play';
   static const String winnerCategoryButtonPlayAgain = 'Play again';
-  static const String buttonViewAllCategories = 'View all categories';
-  static const String secondaryButtonText = 'View all';
+  static const String backToMenuButton = 'Back to menu';
+  static const String viewAllButton = 'View all';
   static const String versus = 'VS';
+  static const String lastPlaysListTitle = 'Your last plays:';
+  static const String allCategoryPageTitle = 'All Categories Page';
 
   static String winnerMsg(String categoryName) {
     return 'The winner of category "$categoryName" is:';
+  }
+
+  static String playedOnDate(String date) {
+    return 'Played on: $date';
   }
 }

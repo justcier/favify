@@ -13,6 +13,9 @@ _$_Category _$$_CategoryFromJson(Map<String, dynamic> json) => _$_Category(
       items: (json['items'] as List<dynamic>)
           .map((e) => Item.fromJson(e as Map<String, dynamic>))
           .toList(),
+      playedDate: json['playedDate'] == null
+          ? null
+          : DateTime.parse(json['playedDate'] as String),
     );
 
 Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>
@@ -21,4 +24,5 @@ Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>
       'title': instance.title,
       'description': instance.description,
       'items': instance.items,
+      'playedDate': instance.playedDate?.toIso8601String(),
     };

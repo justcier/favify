@@ -60,3 +60,5 @@ const List<Item> tItems = [
         'https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png',
   )
 ];
+
+final List<Category> singleWinnerCategoryList = [tCategories.first];

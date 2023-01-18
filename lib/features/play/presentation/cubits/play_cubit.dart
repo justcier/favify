@@ -1,7 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/features/categories/domain/models/item/item.dart';
+import 'package:favify/features/categories/domain/use_cases/get_stored_winner_categories_use_case.dart';
+import 'package:favify/features/categories/domain/use_cases/store_winner_categories_use_case.dart';
 import 'package:favify/features/play/presentation/cubits/play_state.dart';
+import 'package:favify/services/injection_service.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -10,9 +13,14 @@ class PlayCubit extends Cubit<PlayState> {
 
   void updateAndSortCategory(Category category) {
     final List<Item> shuffledItems = [...category.items]..shuffle();
+    final now = DateTime.now();
     emit(
       state.copyWith(
-        category: category.copyWith(items: shuffledItems),
+        category: category.copyWith(
+          items: shuffledItems,
+          // Now is added to allow testing of this code.
+          playedDate: DateTime(now.year, now.month, now.day),
+        ),
         unmodifiedCategory: category,
       ),
     );
@@ -33,7 +41,7 @@ class PlayCubit extends Cubit<PlayState> {
     );
   }
 
-  void chooseWinner(Item winnerItem) {
+  Future<void> chooseWinner(Item winnerItem) async {
     addWinnerToWinnerList(winnerItem);
     deleteFirstAndSecondItem();
 
@@ -46,6 +54,15 @@ class PlayCubit extends Cubit<PlayState> {
       );
     }
     if (state.category!.items.length == 1) {
+      final List<Category> storedWinnerCategories =
+          (await getIt.getAsync<GetStoredWinnerCategoriesUseCase>()).call();
+      // Added new category to winner list.
+      final List<Category> newCategoriesToStore = [
+        state.category!,
+        ...storedWinnerCategories
+      ];
+      (await getIt.getAsync<StoreWinnerCategoriesUseCase>())
+          .call(newCategoriesToStore);
       emit(state.copyWith(isWinnerDetermined: true));
     }
   }

@@ -18,9 +18,14 @@ class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const HomePage(),
+        child: HomePage(
+          updated: args.updated,
+          key: args.key,
+        ),
       );
     },
     PlayRoute.name: (routeData) {
@@ -44,6 +49,16 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    AllCategoriesRoute.name: (routeData) {
+      final args = routeData.argsAs<AllCategoriesRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: AllCategoriesPage(
+          categories: args.categories,
+          key: args.key,
+        ),
+      );
+    },
   };
 
   @override
@@ -60,19 +75,45 @@ class _$AppRouter extends RootStackRouter {
           WinnerRoute.name,
           path: '/winner-page',
         ),
+        RouteConfig(
+          AllCategoriesRoute.name,
+          path: '/all-categories-page',
+        ),
       ];
 }
 
 /// generated route for
 /// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute()
-      : super(
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    bool updated = false,
+    Key? key,
+  }) : super(
           HomeRoute.name,
           path: '/',
+          args: HomeRouteArgs(
+            updated: updated,
+            key: key,
+          ),
         );
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({
+    this.updated = false,
+    this.key,
+  });
+
+  final bool updated;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{updated: $updated, key: $key}';
+  }
 }
 
 /// generated route for
@@ -145,5 +186,39 @@ class WinnerRouteArgs {
   @override
   String toString() {
     return 'WinnerRouteArgs{winnerItem: $winnerItem, unmodifiedCategory: $unmodifiedCategory, key: $key}';
+  }
+}
+
+/// generated route for
+/// [AllCategoriesPage]
+class AllCategoriesRoute extends PageRouteInfo<AllCategoriesRouteArgs> {
+  AllCategoriesRoute({
+    required List<Category> categories,
+    Key? key,
+  }) : super(
+          AllCategoriesRoute.name,
+          path: '/all-categories-page',
+          args: AllCategoriesRouteArgs(
+            categories: categories,
+            key: key,
+          ),
+        );
+
+  static const String name = 'AllCategoriesRoute';
+}
+
+class AllCategoriesRouteArgs {
+  const AllCategoriesRouteArgs({
+    required this.categories,
+    this.key,
+  });
+
+  final List<Category> categories;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AllCategoriesRouteArgs{categories: $categories, key: $key}';
   }
 }

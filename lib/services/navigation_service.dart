@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:favify/features/all_categories/presentation/pages/all_categories_page.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
 import 'package:favify/features/categories/domain/models/item/item.dart';
 import 'package:favify/features/home/presentation/pages/home_page.dart';
@@ -13,7 +14,8 @@ part 'navigation_service.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(page: HomePage, initial: true),
     AutoRoute(page: PlayPage),
-    AutoRoute(page: WinnerPage)
+    AutoRoute(page: WinnerPage),
+    AutoRoute(page: AllCategoriesPage),
   ],
 )
 class AppRouter extends _$AppRouter {}

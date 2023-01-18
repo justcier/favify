@@ -24,6 +24,7 @@ mixin _$Category {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<Item> get items => throw _privateConstructorUsedError;
+  DateTime? get playedDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,12 @@ abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
-  $Res call({String id, String title, String description, List<Item> items});
+  $Res call(
+      {String id,
+      String title,
+      String description,
+      List<Item> items,
+      DateTime? playedDate});
 }
 
 /// @nodoc
@@ -56,6 +62,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
     Object? title = null,
     Object? description = null,
     Object? items = null,
+    Object? playedDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -74,6 +81,10 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
+      playedDate: freezed == playedDate
+          ? _value.playedDate
+          : playedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -85,7 +96,12 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       __$$_CategoryCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, String description, List<Item> items});
+  $Res call(
+      {String id,
+      String title,
+      String description,
+      List<Item> items,
+      DateTime? playedDate});
 }
 
 /// @nodoc
@@ -103,6 +119,7 @@ class __$$_CategoryCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? items = null,
+    Object? playedDate = freezed,
   }) {
     return _then(_$_Category(
       id: null == id
@@ -121,6 +138,10 @@ class __$$_CategoryCopyWithImpl<$Res>
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
+      playedDate: freezed == playedDate
+          ? _value.playedDate
+          : playedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -132,7 +153,8 @@ class _$_Category extends _Category {
       {required this.id,
       required this.title,
       required this.description,
-      required final List<Item> items})
+      required final List<Item> items,
+      this.playedDate})
       : _items = items,
         super._();
 
@@ -153,8 +175,11 @@ class _$_Category extends _Category {
   }
 
   @override
+  final DateTime? playedDate;
+
+  @override
   String toString() {
-    return 'Category(id: $id, title: $title, description: $description, items: $items)';
+    return 'Category(id: $id, title: $title, description: $description, items: $items, playedDate: $playedDate)';
   }
 
   @override
@@ -166,13 +191,15 @@ class _$_Category extends _Category {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.playedDate, playedDate) ||
+                other.playedDate == playedDate));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
-      const DeepCollectionEquality().hash(_items));
+      const DeepCollectionEquality().hash(_items), playedDate);
 
   @JsonKey(ignore: true)
   @override
@@ -193,7 +220,8 @@ abstract class _Category extends Category {
       {required final String id,
       required final String title,
       required final String description,
-      required final List<Item> items}) = _$_Category;
+      required final List<Item> items,
+      final DateTime? playedDate}) = _$_Category;
   const _Category._() : super._();
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
@@ -206,6 +234,8 @@ abstract class _Category extends Category {
   String get description;
   @override
   List<Item> get items;
+  @override
+  DateTime? get playedDate;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryCopyWith<_$_Category> get copyWith =>

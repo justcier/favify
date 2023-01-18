@@ -14,8 +14,8 @@ void main() {
 
   group('GetAllCategoriesUseCase', () {
     test(
-        'should correctly propagate the call to remote data source and return all categories on a successful call',
-        () async {
+        'should correctly propagate the call to repository and return all categories on a successful call',
+        () {
       // Arrange
       when(categoriesRepository.getAllCategories).thenReturn(tCategories);
 
