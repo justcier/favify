@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final bool updated;
+
+  const HomePage({this.updated = false, Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -18,15 +20,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final CategoriesCubit categoriesCubit = getIt.get<CategoriesCubit>();
 
-  // better solution:
+  // different solution:
   //final CategoriesCubit categoriesCubit = getIt.get<CategoriesCubit>()..getAllCategories();
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await categoriesCubit.getAllCategories();
-    });
+    _loadCategories();
+  }
+
+  @override
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    if (widget.updated) {
+      _loadCategories();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -60,5 +68,15 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
+  }
+
+  void _loadCategories() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (widget.updated) {
+        await categoriesCubit.updateLocalCategories();
+      } else {
+        await categoriesCubit.getAllCategories();
+      }
+    });
   }
 }

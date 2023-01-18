@@ -40,12 +40,13 @@ class WinnerPage extends StatelessWidget {
               children: [
                 TextButtonWidget.main(
                   text: Strings.backToMenuButton,
-                  onPressed: () => context.router.replace(const HomeRoute()),
+                  onPressed: () =>
+                      context.router.replaceAll([HomeRoute(updated: true)]),
                 ),
                 TextButtonWidget.main(
                   text: Strings.winnerCategoryButtonPlayAgain,
-                  onPressed: () => context.router.replace(
-                    PlayRoute(category: unmodifiedCategory),
+                  onPressed: () => context.router.replaceAll(
+                    [PlayRoute(category: unmodifiedCategory)],
                   ),
                 ),
               ],

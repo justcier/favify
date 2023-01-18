@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PlayState _$PlayStateFromJson(Map<String, dynamic> json) {
-  return _PlayState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$PlayState {
   Category? get category =>
@@ -26,7 +22,6 @@ mixin _$PlayState {
   List<Item> get winnerItems => throw _privateConstructorUsedError;
   bool get isWinnerDetermined => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlayStateCopyWith<PlayState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -167,7 +162,7 @@ class __$$_PlayStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_PlayState extends _PlayState {
   const _$_PlayState(
       {this.category,
@@ -176,9 +171,6 @@ class _$_PlayState extends _PlayState {
       this.isWinnerDetermined = false})
       : _winnerItems = winnerItems,
         super._();
-
-  factory _$_PlayState.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayStateFromJson(json);
 
   @override
   final Category? category;
@@ -217,7 +209,6 @@ class _$_PlayState extends _PlayState {
                 other.isWinnerDetermined == isWinnerDetermined));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, category, unmodifiedCategory,
       const DeepCollectionEquality().hash(_winnerItems), isWinnerDetermined);
@@ -227,13 +218,6 @@ class _$_PlayState extends _PlayState {
   @pragma('vm:prefer-inline')
   _$$_PlayStateCopyWith<_$_PlayState> get copyWith =>
       __$$_PlayStateCopyWithImpl<_$_PlayState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_PlayStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class _PlayState extends PlayState {
@@ -243,9 +227,6 @@ abstract class _PlayState extends PlayState {
       final List<Item> winnerItems,
       final bool isWinnerDetermined}) = _$_PlayState;
   const _PlayState._() : super._();
-
-  factory _PlayState.fromJson(Map<String, dynamic> json) =
-      _$_PlayState.fromJson;
 
   @override
   Category? get category;
