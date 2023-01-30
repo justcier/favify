@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favify/features/categories/data/data_sources/categories_remote_data_source.dart';
 import 'package:favify/features/categories/domain/models/category/category.dart';
+import 'package:favify/services/firebase_api_service.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/models/item/item.dart';
@@ -67,8 +69,18 @@ const List<Item> loadedItemsFilms = [
 
 @Injectable(as: CategoriesRemoteDataSource)
 class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
+  final FirebaseApiService firebaseApiService;
+
+  const CategoriesRemoteDataSourceImpl(this.firebaseApiService);
+
   @override
-  List<Category> getAllCategories() {
-    return loadedCategories;
+  Future<List<Category>> getAllCategories() async {
+    final QuerySnapshot<Category> allCategoriesSnapshot =
+        await firebaseApiService.getAllCategories();
+
+    final List<Category> allCategories =
+        (allCategoriesSnapshot.docs).map((i) => i.data()).toList();
+
+    return allCategories;
   }
 }

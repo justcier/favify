@@ -4,12 +4,13 @@ import 'package:favify/features/categories/domain/repositories/categories_reposi
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetAllCategoriesUseCase implements UseCase<List<Category>, NoParams?> {
+class GetAllCategoriesUseCase
+    implements UseCase<Future<List<Category>>, NoParams?> {
   final CategoriesRepository _categoriesRepository;
 
   GetAllCategoriesUseCase(this._categoriesRepository);
 
   @override
-  List<Category> call([NoParams? params]) =>
+  Future<List<Category>> call([NoParams? params]) =>
       _categoriesRepository.getAllCategories();
 }

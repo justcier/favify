@@ -1,4 +1,5 @@
 import 'package:favify/firebase_options.dart';
+import 'package:favify/services/firebase_api_service.dart';
 import 'package:favify/services/injection_service.dart';
 import 'package:favify/services/navigation_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,6 +11,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseApiService().getAllCategories();
 
   configureInjector();
   runApp(MyApp());
