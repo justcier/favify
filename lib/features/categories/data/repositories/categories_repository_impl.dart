@@ -15,7 +15,7 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   );
 
   @override
-  List<Category> getAllCategories() {
+  Future<List<Category>> getAllCategories() {
     return categoriesRemoteDataSource.getAllCategories();
   }
 

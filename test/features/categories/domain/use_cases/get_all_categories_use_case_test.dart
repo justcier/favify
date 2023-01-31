@@ -15,12 +15,13 @@ void main() {
   group('GetAllCategoriesUseCase', () {
     test(
         'should correctly propagate the call to repository and return all categories on a successful call',
-        () {
+        () async {
       // Arrange
-      when(categoriesRepository.getAllCategories).thenReturn(tCategories);
+      when(categoriesRepository.getAllCategories)
+          .thenAnswer((_) async => tCategories);
 
       // Act
-      final result = useCase.call();
+      final result = await useCase.call();
 
       // Assert
       verify(categoriesRepository.getAllCategories).called(1);

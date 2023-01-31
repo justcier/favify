@@ -13,7 +13,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Future<void> getAllCategories() async {
     emit(state.copyWith(status: CategoriesStateStatus.loading));
     final List<Category> remoteCategories =
-        (await getIt.getAsync<GetAllCategoriesUseCase>()).call();
+        await (await getIt.getAsync<GetAllCategoriesUseCase>()).call();
     final List<Category> storedWinnerCategories =
         (await getIt.getAsync<GetStoredWinnerCategoriesUseCase>()).call();
 
