@@ -4,6 +4,7 @@ import 'package:favify/features/categories/domain/repositories/categories_reposi
 import 'package:favify/features/categories/domain/use_cases/get_all_categories_use_case.dart';
 import 'package:favify/features/categories/domain/use_cases/get_stored_winner_categories_use_case.dart';
 import 'package:favify/features/categories/domain/use_cases/store_winner_categories_use_case.dart';
+import 'package:favify/services/firebase_api_service.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,5 +29,6 @@ class MockStoreWinnerCategoriesUseCase extends Mock
     implements StoreWinnerCategoriesUseCase {}
 
 // Services
-
 class MockSharedPreferences extends Mock implements SharedPreferences {}
+
+class MockFirebaseApiService extends Mock implements FirebaseApiService {}

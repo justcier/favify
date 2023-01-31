@@ -23,13 +23,13 @@ void main() {
     group('getAllCategories', () {
       test(
           'should correctly propagate the call to remote data source and '
-          'return all categories on a successful call', () {
+          'return all categories on a successful call', () async {
         // Arrange
         when(categoriesRemoteDataSource.getAllCategories)
-            .thenReturn(tCategories);
+            .thenAnswer((_) async => tCategories);
 
         // Act
-        final result = categoriesRepositoryImpl.getAllCategories();
+        final result = await categoriesRepositoryImpl.getAllCategories();
 
         // Assert
         verify(categoriesRemoteDataSource.getAllCategories).called(1);

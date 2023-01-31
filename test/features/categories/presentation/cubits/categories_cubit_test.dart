@@ -28,7 +28,7 @@ void main() {
         () async => getStoredWinnerCategoriesUseCase,
       );
 
-    when(getAllCategoriesUseCase.call).thenReturn(tCategories);
+    when(getAllCategoriesUseCase.call).thenAnswer((_) async => tCategories);
     when(getStoredWinnerCategoriesUseCase.call)
         .thenReturn(singleWinnerCategoryList);
   });
